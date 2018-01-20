@@ -1,0 +1,19 @@
+{
+  "name": "react-ui-tabs",
+  "version": "0.1.0",
+  "description": "Clickable tabbed interface component for React.",
+  "main": "Tabs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://jajohnso@github.com/jajohnso/react-ui-tabs.git"
+  },
+  "author": "Jay Johnson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jajohnso/react-ui-tabs/issues"
+  },
+  "homepage": "https://github.com/jajohnso/react-ui-tabs#readme"
+}

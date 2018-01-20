@@ -1,0 +1,31 @@
+$SPACE: 10px;
+
+.tabs__nav {
+    margin-bottom: 10px;
+}
+.tabs__nav > * {
+    display: inline-block;
+}
+
+.tabs__nav > * + * {
+    margin-left: 5px;
+}
+
+.tabs__navLink {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #3f3f3f;
+    padding: 20px 2px;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: darken(#3f3f3f, 20);
+    }
+}
+
+.tabs__navLink--isActive {
+    border-bottom: 4px solid darken(#3f3f3f, 20);
+}
