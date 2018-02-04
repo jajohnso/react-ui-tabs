@@ -4,6 +4,10 @@ import _noop from 'lodash/noop';
 
 import TabsNav from './TabsNav';
 
+import './tabs.css';
+
+const STACKED_WIDTH = '(min-width: 500px)';
+
 /**
  * Tabbed UI component
  * Individual tabs are created by wrapping content in <TabPanel>
@@ -17,9 +21,28 @@ class Tabs extends Component {
     constructor(props) {
         super(props);
 
+        this.updateLayoutHandler = this.updateLayout.bind(this);
+
         this.state = {
             selected: this.props.defaultSelected,
+            isStacked: this.updateLayout(),
         };
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.updateLayoutHandler);
+    }
+
+    updateLayout() {
+        if (window.matchMedia(STACKED_WIDTH).matches) {
+            /* the viewport is at least 500 pixels wide */
+            console.log('match');
+            return true;
+          } else {
+            /* the viewport is less than 500 pixels wide */
+            console.log('no match');
+            return false;
+          }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -29,6 +52,16 @@ class Tabs extends Component {
 
         this.props.onTabChange(this.state.selected);
     }
+
+    renderPanels() {
+        return this.props.children.map((panel, index) => {
+          return React.cloneElement(panel, {
+            selected: this.state.selected,
+            index,
+            key: index,
+          })
+        })
+      }
 
     /**
      * Click handler for tabs navigation
@@ -52,7 +85,7 @@ class Tabs extends Component {
                     tabs={this.props.children}
                 />
                 <div className="tabs__panels">
-                    {this.props.children[this.state.selected]}
+                    {this.renderPanels()}
                 </div>
             </div>
         );

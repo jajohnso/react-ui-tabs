@@ -7,8 +7,11 @@ import PropTypes from 'prop-types';
  * @returns {JSX}
  */
 const TabPanel = props => {
+    const isSelected = (props.selected === props.index);
+    const panelClassName = isSelected ? 'tabs__panel tabs__panel--isActive' :'tabs__panel';
+
     return (
-        <div className="tabs__panel">
+        <div className={panelClassName}>
             {props.children}
         </div>
     );
