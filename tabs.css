@@ -1,0 +1,31 @@
+.tabs__nav {
+  margin-bottom: 10px; }
+
+.tabs__nav > * {
+  display: inline-block; }
+
+.tabs__nav > * + * {
+  margin-left: 5px; }
+
+.tabs__navLink {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #3f3f3f;
+  padding: 20px 2px; }
+  .tabs__navLink:hover, .tabs__navLink:focus {
+    text-decoration: none;
+    color: #0c0c0c; }
+
+.tabs__navLink--isActive {
+  border-bottom: 4px solid #0c0c0c; }
+
+.tabs__panel {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .25s ease-in-out; }
+
+.tabs__panel--isActive {
+  visibility: visible;
+  opacity: 1; }

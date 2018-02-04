@@ -29,3 +29,14 @@ $SPACE: 10px;
 .tabs__navLink--isActive {
     border-bottom: 4px solid darken(#3f3f3f, 20);
 }
+
+.tabs__panel {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .25s ease-in-out;
+}
+
+.tabs__panel--isActive {
+    visibility: visible;
+    opacity: 1;
+}
