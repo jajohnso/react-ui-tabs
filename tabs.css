@@ -13,7 +13,7 @@
   font-weight: bold;
   text-transform: uppercase;
   color: #3f3f3f;
-  padding: 20px 2px; }
+  padding: 20px 40px; }
   .tabs__navLink:hover, .tabs__navLink:focus {
     text-decoration: none;
     color: #0c0c0c; }
