@@ -21,19 +21,19 @@ class Tabs extends Component {
     constructor(props) {
         super(props);
 
-        this.updateLayoutHandler = this.updateLayout.bind(this);
+        this.checkLayoutHandler = this.checkLayout.bind(this);
 
         this.state = {
             selected: this.props.defaultSelected,
-            isStacked: this.updateLayout(),
+            isStacked: this.checkLayout(),
         };
     }
 
     componentDidMount() {
-        window.addEventListener('resize', this.updateLayoutHandler);
+        window.addEventListener('resize', this.checkLayoutHandler);
     }
 
-    updateLayout() {
+    checkLayout() {
         if (window.matchMedia(STACKED_WIDTH).matches) {
             /* the viewport is at least 500 pixels wide */
             console.log('match');
@@ -44,6 +44,7 @@ class Tabs extends Component {
             return false;
           }
     }
+
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.selected === this.state.selected) {
