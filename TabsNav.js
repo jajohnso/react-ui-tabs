@@ -1,34 +1,38 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import TabsNavItem from './TabsNavItem';
 
 /**
- * Tabs sub-component responsible for rendering tab navigation
+ * Tabs sub-component responsible for rendering horizontal tab navigation
  * @param {Object} props
  * @returns {JSX}
  */
 class TabsNav extends Component {
 
     buildNav() {
-        const navItems = this.props.tabs.map((tab, index) => {
-            const label = tab.props.label;
+        const navItems = this
+            .props
+            .tabs
+            .map((tab, index) => {
+                const label = tab.props.label;
 
-            return (
-                <TabsNavItem
-                    index={index}
-                    key={'tabNav_' + index}
-                    label={label}
-                    onClick={this.props.onClick}
-                    selected={this.props.selected}
-                />
-            );
-        });
+                return (
+                    <li key={'tabNav_' + index}>
+                        <TabsNavItem
+                            index={index}
+                            label={label}
+                            onClick={this.props.onClick}
+                            selected={this.props.selected}/>
+                    </li>
+                );
+            });
 
         return navItems;
     }
 
     render() {
+
         return (
             <ol className="tabs__nav">
                 {this.buildNav()}
@@ -40,7 +44,7 @@ class TabsNav extends Component {
 TabsNav.propTypes = {
     onClick: PropTypes.func.isRequired,
     selected: PropTypes.number.isRequired,
-    tabs: PropTypes.arrayOf(PropTypes.object).isRequired,
+    tabs: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default TabsNav;

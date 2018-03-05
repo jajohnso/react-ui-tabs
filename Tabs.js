@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import _noop from 'lodash/noop';
+import {debounce, noop} from './helpers';
 
-import TabsNav from './TabsNav';
+import TabsHorz from './TabsHorz';
+import TabsVert from './TabsVert';
 
 import './tabs.css';
 
@@ -21,48 +22,53 @@ class Tabs extends Component {
     constructor(props) {
         super(props);
 
-        this.checkLayoutHandler = this.checkLayout.bind(this);
+        this.checkLayoutHandler = this
+            .checkLayout
+            .bind(this);
 
         this.state = {
             selected: this.props.defaultSelected,
-            isStacked: this.checkLayout(),
+            isVert: false
         };
     }
 
     componentDidMount() {
-        window.addEventListener('resize', this.checkLayoutHandler);
+        this.checkLayout();
+        window.addEventListener('resize', debounce(this.checkLayoutHandler, 100));
     }
 
     checkLayout() {
         if (window.matchMedia(STACKED_WIDTH).matches) {
             /* the viewport is at least 500 pixels wide */
-            console.log('match');
-            return true;
-          } else {
+            if (this.state.isVert) {
+                this.updateLayout(false);
+            } else {
+                return false;
+            }
+        } else {
             /* the viewport is less than 500 pixels wide */
-            console.log('no match');
-            return false;
-          }
+            if (!this.state.isVert) {
+                this.updateLayout(true);
+            } else {
+                return true;
+            }
+        }
     }
 
+    updateLayout(isVert) {
+        return this.setState({isVert: isVert});
+    }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.selected === this.state.selected) {
             return;
         }
 
-        this.props.onTabChange(this.state.selected);
+        this
+            .props
+            .onTabChange(this.state.selected);
     }
 
-    renderPanels() {
-        return this.props.children.map((panel, index) => {
-          return React.cloneElement(panel, {
-            selected: this.state.selected,
-            index,
-            key: index,
-          })
-        })
-      }
 
     /**
      * Click handler for tabs navigation
@@ -73,35 +79,37 @@ class Tabs extends Component {
     handleNavClick = index => {
         return event => {
             event.preventDefault();
-            this.setState({ selected: index });
+            this.setState({selected: index});
         };
     }
 
     render() {
-        return (
-            <div className="tabs">
-                <TabsNav
-                    onClick={this.handleNavClick}
-                    selected={this.state.selected}
-                    tabs={this.props.children}
-                />
-                <div className="tabs__panels">
-                    {this.renderPanels()}
-                </div>
-            </div>
-        );
+
+        if (this.state.isVert) {
+            return <TabsVert
+                onClick={this.handleNavClick}
+                selected={this.state.selected}
+                tabs={this.props.children}/>
+
+        } else {
+            return <TabsHorz
+                onClick={this.handleNavClick}
+                selected={this.state.selected}
+                tabs={this.props.children}/>
+        }
+
     }
 }
 
 Tabs.propTypes = {
     children: PropTypes.node.isRequired,
     defaultSelected: PropTypes.number,
-    onTabChange: PropTypes.func,
+    onTabChange: PropTypes.func
 };
 
 Tabs.defaultProps = {
     defaultSelected: 0,
-    onTabChange: _noop,
+    onTabChange: noop
 };
 
 export default Tabs;
