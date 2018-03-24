@@ -1,4 +1,5 @@
 $SPACE: 10px;
+@import './_tabsNavLink.scss';
 
 .tabs__nav {
     margin-bottom: 10px;
@@ -11,32 +12,40 @@ $SPACE: 10px;
     margin-left: 5px;
 }
 
-.tabs__navLink {
-    display: block;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #3f3f3f;
-    padding: 20px 40px;
-
-    &:hover,
-    &:focus {
-        text-decoration: none;
-        color: darken(#3f3f3f, 20);
-    }
-}
-
-.tabs__navLink--isActive {
-    border-bottom: 4px solid darken(#3f3f3f, 20);
+.tabs__panels {
+    overflow: hidden;
 }
 
 .tabs__panel {
+    position: absolute;
+    left: -100%;
     visibility: hidden;
+    padding: 20px 40px;
     opacity: 0;
-    transition: opacity .25s ease-in-out;
+    transition: opacity .5s ease-in-out, transform .35s ease-in-out;
 }
 
 .tabs__panel--isActive {
+    position: relative;
+    transform: translateX(100%);
     visibility: visible;
     opacity: 1;
+}
+
+
+.tabs--isVert {
+
+    .tabs__panel {
+        left: 0;
+        top: -100px;
+        transform: scaleY(0);
+        transition: opacity .25s ease-in-out;
+    }
+
+    .tabs__panel--isActive {
+        top: 0;
+        transform: scaleY(1);
+        background-color: #cccccc;
+        transform: none;
+    }
 }

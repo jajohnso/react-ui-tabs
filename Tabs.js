@@ -7,8 +7,6 @@ import TabsVert from './TabsVert';
 
 import './tabs.css';
 
-const STACKED_WIDTH = '(min-width: 500px)';
-
 /**
  * Tabbed UI component
  * Individual tabs are created by wrapping content in <TabPanel>
@@ -33,12 +31,14 @@ class Tabs extends Component {
     }
 
     componentDidMount() {
-        this.checkLayout();
-        window.addEventListener('resize', debounce(this.checkLayoutHandler, 100));
+        if (this.props.isResponsive) {
+            this.checkLayout();
+            window.addEventListener('resize', debounce(this.checkLayoutHandler, 100));
+        }
     }
 
     checkLayout() {
-        if (window.matchMedia(STACKED_WIDTH).matches) {
+        if (window.matchMedia(`(min-width: ${this.props.responsiveWidth}px)`).matches) {
             /* the viewport is at least 500 pixels wide */
             if (this.state.isVert) {
                 this.updateLayout(false);
@@ -69,7 +69,6 @@ class Tabs extends Component {
             .onTabChange(this.state.selected);
     }
 
-
     /**
      * Click handler for tabs navigation
      * @method handleNavClick
@@ -86,16 +85,22 @@ class Tabs extends Component {
     render() {
 
         if (this.state.isVert) {
-            return <TabsVert
-                onClick={this.handleNavClick}
-                selected={this.state.selected}
-                tabs={this.props.children}/>
+            return <div className="tabs tabs--isVert">
+                        <TabsVert
+                            onClick={this.handleNavClick}
+                            selected={this.state.selected}
+                            tabs={this.props.children}
+                        />
+                    </div>
 
         } else {
-            return <TabsHorz
-                onClick={this.handleNavClick}
-                selected={this.state.selected}
-                tabs={this.props.children}/>
+            return <div className="tabs">
+                        <TabsHorz
+                            onClick={this.handleNavClick}
+                            selected={this.state.selected}
+                            tabs={this.props.children}
+                        />
+                    </div>
         }
 
     }
@@ -104,12 +109,14 @@ class Tabs extends Component {
 Tabs.propTypes = {
     children: PropTypes.node.isRequired,
     defaultSelected: PropTypes.number,
-    onTabChange: PropTypes.func
+    onTabChange: PropTypes.func,
+    responsiveBreakpoint: PropTypes.string
 };
 
 Tabs.defaultProps = {
     defaultSelected: 0,
-    onTabChange: noop
+    onTabChange: noop,
+    responsiveBreakpoint: '500'
 };
 
 export default Tabs;

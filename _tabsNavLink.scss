@@ -1,0 +1,31 @@
+.tabsNavLink {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #3f3f3f;
+    padding: 20px 40px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        color: darken(#3f3f3f, 20);
+    }
+}
+
+.tabsNavLink--isActive {
+    border-bottom: 4px solid darken(#3f3f3f, 20);
+}
+
+
+.tabs--isVert {
+
+    .tabsNavLink:not(:first-child) {
+        border-top: 1px solid #cccccc;
+    }
+
+    .tabsNavLink--isActive {
+        border-bottom: 0;
+    }
+}
