@@ -12,7 +12,8 @@ class TabsVert extends Component {
             .map((panel, index) => {
                 const currentPanel = React.cloneElement(panel, {
                     selected: this.props.selected,
-                    index
+                    index,
+                    isVert: true,
                 });
 
                 return (

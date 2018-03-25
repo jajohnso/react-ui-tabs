@@ -60,9 +60,9 @@ class Tabs extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.selected === this.state.selected) {
-            return;
-        }
+        // if (prevState.selected === this.state.selected) {
+        //     return;
+        // }
 
         this
             .props
@@ -78,7 +78,9 @@ class Tabs extends Component {
     handleNavClick = index => {
         return event => {
             event.preventDefault();
-            this.setState({selected: index});
+            this.setState(prevState => {
+                return {selected: prevState.selected === index ? -1 : index}
+            });
         };
     }
 

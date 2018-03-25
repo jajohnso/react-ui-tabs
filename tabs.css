@@ -35,7 +35,7 @@
   position: absolute;
   left: -100%;
   visibility: hidden;
-  padding: 20px 40px;
+  overflow: hidden;
   opacity: 0;
   transition: opacity .5s ease-in-out, transform .35s ease-in-out; }
 
@@ -45,14 +45,16 @@
   visibility: visible;
   opacity: 1; }
 
+.tabs__panelContent {
+  padding: 20px; }
+
 .tabs--isVert .tabs__panel {
+  position: relative;
   left: 0;
-  top: -100px;
-  transform: scaleY(0);
-  transition: opacity .25s ease-in-out; }
+  max-height: 0;
+  opacity: 1;
+  transition: max-height .25s ease-in-out, background .25s ease-in-out, visibility .25s ease-in-out; }
 
 .tabs--isVert .tabs__panel--isActive {
-  top: 0;
-  transform: scaleY(1);
   background-color: #cccccc;
   transform: none; }

@@ -12,7 +12,7 @@ class TabsHorz extends Component {
                 return React.cloneElement(panel, {
                     selected: this.props.selected,
                     index,
-                    key: index
+                    key: index,
                 });
             })
     }
