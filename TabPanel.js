@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import {debounce} from './helpers';
-
 /**
  * Tabs sub-component responsible for rendering individual tab content panels
  * @param {Object} props
@@ -51,7 +49,8 @@ class TabPanel extends Component {
 };
 
 TabPanel.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    icon: PropTypes.object,
 };
 
 export default TabPanel;

@@ -20,10 +20,12 @@ class TabsNav extends Component {
                 return (
                     <li key={'tabNav_' + index}>
                         <TabsNavItem
+                            icon={this.props.showIconsHorz ? tab.props.icon : null}
                             index={index}
                             label={label}
                             onClick={this.props.onClick}
-                            selected={this.props.selected}/>
+                            selected={this.props.selected}
+                        />
                     </li>
                 );
             });
@@ -44,7 +46,11 @@ class TabsNav extends Component {
 TabsNav.propTypes = {
     onClick: PropTypes.func.isRequired,
     selected: PropTypes.number.isRequired,
-    tabs: PropTypes.arrayOf(PropTypes.object)
+    tabs: PropTypes.arrayOf(PropTypes.object),
+    showIconsHorz: PropTypes.bool,
 };
 
+TabsNav.defaultProps = {
+    showIconsHorz: false,
+};
 export default TabsNav;

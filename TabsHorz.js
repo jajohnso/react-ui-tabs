@@ -24,6 +24,7 @@ class TabsHorz extends Component {
                     onClick={this.props.onClick}
                     selected={this.props.selected}
                     tabs={this.props.tabs}
+                    showIconsHorz={this.props.showIconsHorz}
                 />
                 <div className="tabs__panels">
                     {this.renderPanels()}
@@ -36,7 +37,12 @@ class TabsHorz extends Component {
 TabsHorz.propTypes = {
     onClick: PropTypes.func.isRequired,
     selected: PropTypes.number.isRequired,
-    tabs: PropTypes.node.isRequired
+    tabs: PropTypes.node.isRequired,
+    showIconsHorz: PropTypes.bool,
+};
+
+TabsHorz.defaultProps =  {
+    showIconsHorz: false,
 };
 
 export default TabsHorz;

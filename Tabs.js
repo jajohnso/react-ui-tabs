@@ -5,24 +5,25 @@ import {debounce, noop} from './helpers';
 import TabsHorz from './TabsHorz';
 import TabsVert from './TabsVert';
 
+
 import './tabs.css';
 
 /**
- * Tabbed UI component
- * Individual tabs are created by wrapping content in <TabPanel>
- * Tab navigation is dynamically generated based on a label prop passed into each <TabPanel>
- * The first tab is selected by default, but can be overriden by adding a selected prop
- * with the index of the desired tab
- * @class Tabs
- * @returns {JSX}
- */
+* Tabbed UI component
+* Individual tabs are created by wrapping content in <TabPanel>
+* Tab navigation is dynamically generated based on a label prop passed into each <TabPanel>
+* The first tab is selected by default, but can be overriden by adding a selected prop
+* with the index of the desired tab
+* @class Tabs
+* @returns {JSX}
+*/
 class Tabs extends Component {
     constructor(props) {
         super(props);
 
         this.checkLayoutHandler = this
-            .checkLayout
-            .bind(this);
+        .checkLayout
+        .bind(this);
 
         this.state = {
             selected: this.props.defaultSelected,
@@ -59,28 +60,25 @@ class Tabs extends Component {
         return this.setState({isVert: isVert});
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        // if (prevState.selected === this.state.selected) {
-        //     return;
-        // }
-
-        this
-            .props
-            .onTabChange(this.state.selected);
-    }
-
     /**
-     * Click handler for tabs navigation
-     * @method handleNavClick
-     * @param {Number} index clicked tab's index value
-     * @returns {Function} sets selected state
-     */
+    * Click handler for tabs navigation
+    * @method handleNavClick
+    * @param {Number} index clicked tab's index value
+    * @returns {Function} sets selected state
+    */
     handleNavClick = index => {
         return event => {
             event.preventDefault();
-            this.setState(prevState => {
-                return {selected: prevState.selected === index ? -1 : index}
-            });
+
+            if (this.state.isVert) {
+                this.setState(prevState => {
+                    return {selected: prevState.selected === index ? -1 : index}
+                });
+            } else {
+                this.setState(prevState => {
+                    return {selected: index}
+                });
+            }
         };
     }
 
@@ -88,21 +86,23 @@ class Tabs extends Component {
 
         if (this.state.isVert) {
             return <div className="tabs tabs--isVert">
-                        <TabsVert
-                            onClick={this.handleNavClick}
-                            selected={this.state.selected}
-                            tabs={this.props.children}
-                        />
-                    </div>
+            <TabsVert
+                onClick={this.handleNavClick}
+                selected={this.state.selected}
+                tabs={this.props.children}
+                showIconsVert={this.props.showIconsVert}
+            />
+            </div>
 
         } else {
             return <div className="tabs">
-                        <TabsHorz
-                            onClick={this.handleNavClick}
-                            selected={this.state.selected}
-                            tabs={this.props.children}
-                        />
-                    </div>
+            <TabsHorz
+                onClick={this.handleNavClick}
+                selected={this.state.selected}
+                tabs={this.props.children}
+                showIconsHorz={this.props.showIconsHorz}
+            />
+            </div>
         }
 
     }

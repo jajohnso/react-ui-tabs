@@ -23,6 +23,7 @@ class TabsVert extends Component {
                             label={panel.props.label}
                             onClick={this.props.onClick}
                             selected={this.props.selected}
+                            icon={this.props.showIconsVert ? panel.props.icon : null}
                         />
                         {currentPanel}
                     </Fragment>
@@ -32,14 +33,21 @@ class TabsVert extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (this.renderPanels());
     }
 }
 
 TabsVert.propTypes = {
+    icon: PropTypes.func,
     onClick: PropTypes.func.isRequired,
     selected: PropTypes.number.isRequired,
-    tabs: PropTypes.node.isRequired
+    tabs: PropTypes.node.isRequired,
+    showIconsVert: PropTypes.bool,
 };
+
+TabsVert.defaultProps = {
+    showIconsVert: false,
+}
 
 export default TabsVert;

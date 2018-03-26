@@ -19,6 +19,7 @@ const TabsNavItem = props => {
             className={getClassNames(props.selected, props.index)}
             onClick={props.onClick(props.index)}>
             {props.label}
+            {props.icon}
         </a>
     );
 };
