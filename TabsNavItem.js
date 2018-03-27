@@ -14,12 +14,13 @@ function getClassNames(selected, currentIndex) {
  * @returns {JSX}
  */
 const TabsNavItem = props => {
+    const { label, icon, selected, index, onClick } = props;
     return (
         <a
-            className={getClassNames(props.selected, props.index)}
-            onClick={props.onClick(props.index)}>
-            {props.label}
-            {props.icon}
+            className={getClassNames(selected, index)}
+            onClick={onClick(index)}>
+            {label}
+            {icon ? <span className="tabsNavLink__icon">{icon}</span> : null}
         </a>
     );
 };
