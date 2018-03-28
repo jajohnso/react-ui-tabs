@@ -1,5 +1,7 @@
 .tabsNavLink {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
@@ -12,6 +14,15 @@
 
 .tabsNavLink--isActive {
   border-bottom: 4px solid #0c0c0c; }
+  .tabsNavLink--isActive .tabsNavLink__icon {
+    transform: rotate(90deg);
+    transform-origin: center; }
+
+.tabsNavLink__icon {
+  transition: transform .35s ease-in-out; }
+  .tabsNavLink__icon svg {
+    display: block;
+    fill: #cccccc; }
 
 .tabs--isVert .tabsNavLink:not(:first-child) {
   border-top: 1px solid #cccccc; }
