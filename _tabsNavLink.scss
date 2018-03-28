@@ -1,5 +1,7 @@
 .tabsNavLink {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
@@ -16,9 +18,24 @@
 
 .tabsNavLink--isActive {
     border-bottom: 4px solid darken(#3f3f3f, 20);
+
+    & .tabsNavLink__icon {
+        transform: rotate(90deg);
+        transform-origin: center;
+    }
 }
 
 
+.tabsNavLink__icon {
+    transition: transform .35s ease-in-out;
+
+    & svg {
+        display: block;
+        fill: #cccccc;
+    }
+}
+
+// Vertical Layout
 .tabs--isVert {
 
     .tabsNavLink:not(:first-child) {
