@@ -8,10 +8,10 @@
     color: #3f3f3f;
     padding: 20px 40px;
     cursor: pointer;
+    text-decoration: none;
 
     &:hover,
     &:focus {
-        text-decoration: none;
         color: darken(#3f3f3f, 20);
     }
 }
