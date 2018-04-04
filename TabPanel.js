@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
+import TabIcon from './TabIcon';
+import CamelCase from 'lodash/camelCase';
+
 /**
  * Tabs sub-component responsible for rendering individual tab content panels
  * @param {Object} props
@@ -34,9 +37,12 @@ class TabPanel extends Component {
             ? 'tabs__panel tabs__panel--isActive'
             : 'tabs__panel';
 
+        const panelID = CamelCase(this.props.label);
+
         return (
             <div
                 className={panelClassName}
+                id={panelID}
                 ref={panel => this.panel = panel}
                 style={{ maxHeight: this.setHeight() }}
             >
@@ -51,6 +57,11 @@ class TabPanel extends Component {
 TabPanel.propTypes = {
     children: PropTypes.node.isRequired,
     icon: PropTypes.object,
+    label: PropTypes.string.isRequired,
 };
+
+TabPanel.defaultProps = {
+    icon: <TabIcon/>,
+}
 
 export default TabPanel;
