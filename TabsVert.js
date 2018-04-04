@@ -33,7 +33,6 @@ class TabsVert extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (this.renderPanels());
     }
 }
