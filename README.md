@@ -4,11 +4,23 @@ A simple react component for creating a clickable tabbed interface.
 ## Setup
 Setting up the tabs component is as simple as defining an outer `Tabs` component that wraps a series of `TabPanels` components. The component will generate tab navigation from a required `label` prop that is added to each individual `TabPanel`.
 
+*Basic Example*
+```
+<Tabs>
+    <TabPanel label={'Tab 1'} icon={<TabIcon />}>
+        Content for Tab 1
+    </TabPanel>
+    <TabPanel label={'Tab 2'} icon={<TabIcon />}>
+        Content for Tab 2
+    </TabPanel>
+</Tabs>
+```
 ## Tabs Props
 Options can be passed into the Component base element as props.
 
 ### defaultSelected
 Optional prop to specify which tab is open on page load. Defaults to 0 if omitted.
+
 #### type:  `Number`
 Accepts a number representing the zero-based index number of choosen tab.
 
