@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CamelCase from 'lodash/camelCase';
 
 // helper function to dynamically build classnames
 function getClassNames(selected, currentIndex) {
@@ -15,9 +16,11 @@ function getClassNames(selected, currentIndex) {
  */
 const TabsNavItem = props => {
     const { label, icon, selected, index, onClick } = props;
+
     return (
         <a
             className={getClassNames(selected, index)}
+            href={`#${CamelCase(label)}`}
             onClick={onClick(index)}>
             {label}
             {icon ? <span className="tabsNavLink__icon">{icon}</span> : null}
