@@ -38,6 +38,13 @@ class Tabs extends Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.selected !== this.state.selected) {
+            this.props.onTabChange(this.state.selected);
+        }
+    }
+
+
     checkLayout() {
         if (window.matchMedia(`(min-width: ${this.props.responsiveWidth}px)`).matches) {
             /* the viewport is at least 500 pixels wide */
