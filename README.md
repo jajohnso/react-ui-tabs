@@ -1,7 +1,10 @@
 # react-ui-tabs
 A simple react component for creating a clickable tabbed interface.
 
-## Props
+## Setup
+Setting up the tabs component is as simple as defining an outer `Tabs` component that wraps a series of `TabPanels` components. The component will generate tab navigation from a required `label` prop that is added to each individual `TabPanel`.
+
+## Tabs Props
 Options can be passed into the Component base element as props.
 
 ### defaultSelected
@@ -22,7 +25,7 @@ Flag to indicate whether tabs layout should switch to vertical positioning at sm
 #### type:  `Boolean`
 `true` if tabs should use vertical layout below a specified width. Defaults to false. Specific pixel width can be specified using the `responsiveWidth` prop, otherwise a default of `500px` will be used.
 
-Example:
+*Example:*
 ```
 isResponsive={true}
 ```
@@ -33,7 +36,7 @@ Min-width media query pixel value at which vertical layout is triggered.
 #### type:  `Integer`
 Accepts a number representing the zero-based index number of choosen tab. Defaults to `500`.
 
-Example:
+*Example:*
 ```
 responsiveWidth={768}
 ```
@@ -44,7 +47,7 @@ Flag to indicate whether icons should be shown when vertical layout is used.
 #### type:  `Boolean`
 `true` if icons should be shown. Defaults to `false`.
 
-Example:
+*Example:*
 ```
 showIconsVert={true}
 ```
@@ -55,16 +58,36 @@ Flag to indicate whether icons should be shown when horizontal layout is used.
 #### type:  `Boolean`
 `true` if icons should be shown. Defaults to `false`.
 
-Example:
+*Example:*
 ```
 showIconsHorz={true}
 ```
 
+## TabPanel Props
+
+### label
+#### *REQUIRED*
+
+Each `TabPanel` component requires a `label` to be specified. This label is used to generate the tab navigation when the component is mounted.
+
+
+#### type:  `String`
+String representing the title of the tab.
+
+*Example*
+```
+<TabPanel label={'Tab 1 Title Goes Here'}>
+    Content for Tab 1
+</TabPanel>
+```
 
 ### icon
 Custom SVG icons can be added as separate components and passed into each `TabPanel` component using props.
 
-Example:
+#### type:  `Object`
+Accepts a react component that returns an SVG graphic. See example.
+
+*Example:*
 
 Define custom SVG component:
 
@@ -80,4 +103,17 @@ const TabIcon = (props) => {
 }
 
 export default TabIcon;
+```
+
+Then import the component into the containing component for the `Tabs`.
+```
+import TabIcon from './components/Tabs/TabIcon';
+```
+
+and pass it into the `TabPanel` component as a prop:
+
+```
+ <TabPanel label={'Tab 1'} icon={<TabIcon />}>
+    Content for Tab 1
+</TabPanel>
 ```
