@@ -1,6 +1,8 @@
 # react-ui-tabs
 A simple react component for creating a clickable tabbed interface.
 
+[Demo Page](https://jajohnso.github.io/react-ui-tabs/)
+
 ## Setup
 Setting up the tabs component is as simple as defining an outer `Tabs` component that wraps a series of `TabPanels` components. The component will generate tab navigation from a required `label` prop that is added to each individual `TabPanel`.
 
