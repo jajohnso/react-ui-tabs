@@ -75,6 +75,17 @@ Flag to indicate whether icons should be shown when horizontal layout is used.
 showIconsHorz={true}
 ```
 
+### onTabChange
+Optional prop to provide a callback function to be executed on tab change. Callback function takes he currently selected tab as a parameter.
+
+#### type:  `Function`
+Accepts a function which takes the selected tab as a parameter. Function should have its context bound to the containing component.
+
+Example:
+```
+onTabChange={this.handleChange}
+```
+
 ## TabPanel Props
 
 ### label
