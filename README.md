@@ -45,7 +45,7 @@ isResponsive={true}
 ### responsiveWidth
 Min-width media query pixel value at which vertical layout is triggered.
 
-#### type:  `Integer`
+#### type:  `Number`
 Accepts a number representing the zero-based index number of choosen tab. Defaults to `500`.
 
 *Example:*
@@ -76,7 +76,7 @@ showIconsHorz={true}
 ```
 
 ### onTabChange
-Optional prop to provide a callback function to be executed on tab change. Callback function takes he currently selected tab as a parameter.
+Optional prop to provide a callback function to be executed on tab change. Callback function takes the currently selected tab as a parameter.
 
 #### type:  `Function`
 Accepts a function which takes the selected tab as a parameter. Function should have its context bound to the containing component.
