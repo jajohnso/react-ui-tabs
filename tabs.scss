@@ -1,14 +1,13 @@
 @import './_tabsNavLink.scss';
 
 .tabs__nav {
+    display: flex;
+    padding: 0;
     margin-bottom: 10px;
+    list-style: none;
 }
 .tabs__nav > * {
-    display: inline-block;
-}
-
-.tabs__nav > * + * {
-    margin-left: 5px;
+    flex: 1;
 }
 
 .tabs__panels {

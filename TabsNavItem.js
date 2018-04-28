@@ -9,6 +9,10 @@ function getClassNames(selected, currentIndex) {
         : 'tabsNavLink';
 }
 
+function getAria(selected, currentIndex) {
+
+}
+
 /**
  * Tabs sub-component responsible for rendering individual tabs nav item
  * @param {Object} props
@@ -16,12 +20,20 @@ function getClassNames(selected, currentIndex) {
  */
 const TabsNavItem = props => {
     const { label, icon, selected, index, onClick } = props;
+    const elemID = CamelCase(label);
+    const isSelected = selected === index;
 
     return (
         <a
             className={getClassNames(selected, index)}
-            href={`#${CamelCase(label)}`}
-            onClick={onClick(index)}>
+            href={`#${elemID}`}
+            onClick={onClick(index)}
+            role={'tab'}
+            aria-controls={elemID}
+            aria-selected={isSelected}
+            aria-expanded={isSelected}
+            tabindex={isSelected ? 0 : -1}
+        >
             {label}
             {icon ? <span className="tabsNavLink__icon">{icon}</span> : null}
         </a>

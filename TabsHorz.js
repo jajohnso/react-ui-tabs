@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import TabsNav from './TabsNav';
@@ -19,7 +19,7 @@ class TabsHorz extends Component {
 
     render() {
         return (
-            <div className="tabs">
+            <Fragment>
                 <TabsNav
                     onClick={this.props.onClick}
                     selected={this.props.selected}
@@ -29,7 +29,7 @@ class TabsHorz extends Component {
                 <div className="tabs__panels">
                     {this.renderPanels()}
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }

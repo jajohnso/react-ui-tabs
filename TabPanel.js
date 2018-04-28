@@ -33,7 +33,8 @@ class TabPanel extends Component {
     }
 
     render() {
-        const panelClassName = this.props.selected === this.props.index
+        const isSelected = this.props.selected === this.props.index
+        const panelClassName = isSelected
             ? 'tabs__panel tabs__panel--isActive'
             : 'tabs__panel';
 
@@ -43,8 +44,11 @@ class TabPanel extends Component {
             <div
                 className={panelClassName}
                 id={panelID}
+                role="tabpanel"
                 ref={panel => this.panel = panel}
                 style={{ maxHeight: this.setHeight() }}
+                tabindex={isSelected ? 0 : -1}
+                aria-hidden={!isSelected}
             >
                 <div className="tabs__panelContent">
                     {this.props.children}

@@ -36,7 +36,7 @@ class TabsNav extends Component {
     render() {
 
         return (
-            <ol className="tabs__nav">
+            <ol className="tabs__nav" role="tablist">
                 {this.buildNav()}
             </ol>
         );
