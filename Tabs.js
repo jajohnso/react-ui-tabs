@@ -5,7 +5,6 @@ import {debounce, noop} from './helpers';
 import TabsHorz from './TabsHorz';
 import TabsVert from './TabsVert';
 
-
 import './tabs.css';
 
 /**

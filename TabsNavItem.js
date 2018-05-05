@@ -9,10 +9,6 @@ function getClassNames(selected, currentIndex) {
         : 'tabsNavLink';
 }
 
-function getAria(selected, currentIndex) {
-
-}
-
 /**
  * Tabs sub-component responsible for rendering individual tabs nav item
  * @param {Object} props
